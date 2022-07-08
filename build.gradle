@@ -3,7 +3,7 @@ plugins {
     id "org.jetbrains.kotlin.jvm" version "1.6.0"
 }
 
-group 'com.urbanmatrix.tutorial'
+group 'com.urbanmatrix.tutorial.protoc.plugin'
 version '1.0-SNAPSHOT'
 
 ext.javaVersion = 8
