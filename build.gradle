@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id "org.jetbrains.kotlin.jvm" version "1.6.0"
+}
+
+group 'com.urbanmatrix.tutorial'
+version '1.0-SNAPSHOT'
+
+ext.javaVersion = 8
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
+    toolchain.vendor = JvmVendorSpec.ADOPTOPENJDK
+}
+
+compileKotlin.kotlinOptions.jvmTarget = javaVersion.toString()
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+}
+
+test {
+    useJUnitPlatform()
+}
