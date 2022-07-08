@@ -1,9 +1,17 @@
 plugins {
     id 'java'
+    id "org.jetbrains.kotlin.jvm" version "1.6.0"
 }
 
 group 'com.urbanmatrix.tutorial.protoc.plugin'
 version '1.0-SNAPSHOT'
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
+    toolchain.vendor = JvmVendorSpec.ADOPTOPENJDK
+}
+
+compileKotlin.kotlinOptions.jvmTarget = javaVersion.toString()
 
 repositories {
     mavenCentral()
