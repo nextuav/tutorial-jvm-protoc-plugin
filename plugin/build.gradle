@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
     id "org.jetbrains.kotlin.jvm"
 }
 
@@ -12,6 +13,10 @@ java {
 }
 
 compileKotlin.kotlinOptions.jvmTarget = javaVersion.toString()
+
+application {
+    mainClassName = "com.urbanmatrix.tutoriala.protoc.plugin.plugin.MainKt"
+}
 
 repositories {
     mavenCentral()
