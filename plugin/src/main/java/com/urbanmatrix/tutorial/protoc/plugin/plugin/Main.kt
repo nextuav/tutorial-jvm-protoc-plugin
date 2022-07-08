@@ -38,7 +38,6 @@ fun main() {
     generatorResponse.build().writeTo(System.out)
 }
 
-// Generates a static and class method which returns the fully qualified descriptor name
 fun generateIdCode(): String {
     return """
         |private static final int ID = ${++id};
