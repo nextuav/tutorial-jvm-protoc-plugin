@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package urbanmatrix.tutorial;
+
+option java_package = "com.urbanmatrix.tutorial.protoc.plugin";
+option java_multiple_files = true;
+
+message Ping {}
+
+message Location {
+  double latitude = 1;
+  double longitude = 2;
+}
