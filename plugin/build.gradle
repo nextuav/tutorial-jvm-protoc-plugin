@@ -15,7 +15,7 @@ java {
 compileKotlin.kotlinOptions.jvmTarget = javaVersion.toString()
 
 application {
-    mainClassName = "com.urbanmatrix.tutoriala.protoc.plugin.plugin.MainKt"
+    mainClassName = "com.urbanmatrix.tutorial.protoc.plugin.plugin.MainKt"
 }
 
 repositories {
