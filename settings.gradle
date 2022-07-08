@@ -1,3 +1,4 @@
 rootProject.name = 'tutorial-jvm-protoc-plugin'
 
 include 'api'
+include 'plugin'
