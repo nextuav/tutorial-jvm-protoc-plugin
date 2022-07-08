@@ -41,10 +41,10 @@ fun main() {
 // Generates a static and class method which returns the fully qualified descriptor name
 fun generateIdCode(): String {
     return """
-        |private static final int ID = "${++id}";
+        |private static final int ID = ${++id};
         |
         |@${Override::class.java.name}
-        |public String getId() {
+        |public int getId() {
         |  return ID;
         |}
     """.trimMargin()
