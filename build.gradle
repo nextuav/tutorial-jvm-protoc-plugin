@@ -1,12 +1,23 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.google.protobuf:protobuf-gradle-plugin:0.8.18"
+    }
+}
+
 plugins {
+    id 'idea'
     id 'java'
     id "org.jetbrains.kotlin.jvm" version "1.6.0"
+    id "com.google.protobuf" version "0.8.18"
 }
 
 group 'com.urbanmatrix.tutorial.protoc.plugin'
 version '1.0-SNAPSHOT'
 
-ext.javaVersion = 8
+ext.javaVersion = 11
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
@@ -15,11 +26,63 @@ java {
 
 compileKotlin.kotlinOptions.jvmTarget = javaVersion.toString()
 
+sourceSets {
+    main {
+        java {
+            srcDir "build/generated/source/proto/main/java"
+        }
+        kotlin {
+            srcDir "build/generated/source/proto/main/kotlin"
+        }
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.21.1"
+    }
+
+    plugins {
+        example_plugin {
+            path = "$rootDir/plugin/build/install/plugin/bin/plugin"
+        }
+    }
+
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                task.dependsOn ":plugin:installDist"
+
+                java {
+                    option "lite"
+                }
+
+                kotlin {
+                    option "lite"
+                }
+            }
+
+            task.plugins {
+                example_plugin {
+                    outputSubDir = "java"
+                }
+            }
+        }
+    }
+
+
+}
+
 repositories {
     mavenCentral()
+    google()
 }
 
 dependencies {
+    api(project(":api"))
+    api "com.google.protobuf:protobuf-javalite:3.21.1"
+    api "com.google.protobuf:protobuf-kotlin-lite:3.21.1"
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
