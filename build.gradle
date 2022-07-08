@@ -6,7 +6,7 @@ plugins {
 group 'com.urbanmatrix.tutorial.protoc.plugin'
 version '1.0-SNAPSHOT'
 
-ext.javaVersion = 8
+ext.javaVersion = 11
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
