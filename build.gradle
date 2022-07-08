@@ -69,8 +69,6 @@ protobuf {
             }
         }
     }
-
-
 }
 
 repositories {
